@@ -46,15 +46,22 @@ class AIProcessor:
             "Authorization": "Bearer {}".format(self.api_key),
         }
         response = requests.post(
-            url = "https://openrouter.ai/api/v1/completions",
+            url = "https://openrouter.ai/api/v1/chat/completions",
             headers = headers,
             data=json.dumps({
                 "model": self.args.model,
-                "prompt" : input_text,
+                "messages": [
+                    {"role": "system",
+                      "content": "Do not use markdown formatting, * or #, in the output",
+                    },
+                    {"role": "user",
+                     "content": input_text,
+                    },
+                ],
             })
         )
         try:
-            return response.json().get("choices")[0].get("text")
+            return response.json().get("choices")[0].get("message").get("content")
         except:
             print(response.text)
 
