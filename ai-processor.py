@@ -8,6 +8,14 @@ import sys
 
 KEY_FILE = "~/.openrouter.key"
 
+#DEFAULT_MODEL = "meta-llama/llama-4-maverick:free"
+#DEFAULT_MODEL = "google/gemma-3-27b-it:free"
+#DEFAULT_MODEL = "google/gemini-2.0-flash-exp:free"
+#DEFAULT_MODEL = "google/learnlm-1.5-pro-experimental:free",
+#
+#DEFAULT_MODEL = "openai/gpt-4o-mini"
+DEFAULT_MODEL = "google/gemini-flash-1.5-8b"
+
 class AIProcessor:
     def __init__(self):
         self.args = self.parse_args()
@@ -18,7 +26,7 @@ class AIProcessor:
         parser = argparse.ArgumentParser(description="Text processing script.")
         parser.add_argument(
             "--model",
-            default="google/learnlm-1.5-pro-experimental:free",
+            default=DEFAULT_MODEL,
             help="Model to use for processing."
         )
         parser.add_argument(
