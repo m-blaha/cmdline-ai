@@ -53,7 +53,10 @@ class AIProcessor:
                 "prompt" : input_text,
             })
         )
-        return response.json().get("choices")[0].get("text")
+        try:
+            return response.json().get("choices")[0].get("text")
+        except:
+            print(response.text)
 
     def read_input(self) -> str:
         return sys.stdin.read()
