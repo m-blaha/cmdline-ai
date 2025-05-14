@@ -108,6 +108,17 @@ Analyze the provided diff to understand the changes made. Enhance the existing c
 Input: """
         return self.get_answer(prompt + input_text)
 
+    # Task: correct
+    def task_correct(self, input_text: str) -> str:
+        prompt = """
+V zadaném českém textu oprav překlepy a doplň diakritiku. Neopravuj žádné jiné chyby a neměň formátování textu. Pokud si nebudeš správným řešením jistý, text nechej v původním znění.
+Text: """
+        return self.get_answer(prompt + input_text)
+
+    def task_prompt(self, input_text: str) -> str:
+        return self.get_answer(input_text)
+
+
     def run(self):
         input_text = self.read_input()
         result = self.process(input_text)
